@@ -6,7 +6,7 @@ permalink: /video/
 ---
 
 <section class="videos">
-  {% for v in site.data.videos %}
+  {% for v in site.data.videos.videos %}
     <div class="video-embed">
       <iframe
         src="https://www.youtube-nocookie.com/embed/{{ v.id }}{% if v.start %}?start={{ v.start }}{% endif %}"

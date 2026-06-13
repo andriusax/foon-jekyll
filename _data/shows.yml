@@ -1,23 +1,17 @@
-upcoming:
-  - day: "30"
-    month: "May"
+shows:
+  - date: 2026-08-15
     venue: "Venue"
     place: "Place"
     url: "#"
-  - day: "12"
-    month: "Jun"
+  - date: 2026-09-04
     venue: "Venue"
     place: "Place"
     url: "#"
-
-past:
-  - day: "10"
-    month: "Mar"
+  - date: 2026-03-10
     venue: "Venue"
     place: "Place"
     url: "#"
-  - day: "02"
-    month: "Feb"
+  - date: 2026-02-02
     venue: "Venue"
     place: "Place"
     url: "#"

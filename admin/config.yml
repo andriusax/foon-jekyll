@@ -1,0 +1,47 @@
+backend:
+  name: git-gateway
+  branch: master
+
+# Where uploaded images go in the repo and how they're referenced on the site
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+site_url: ""
+display_url: ""
+
+collections:
+  - name: shows
+    label: "Shows"
+    icon: "calendar"
+    files:
+      - name: shows
+        label: "All shows"
+        file: "_data/shows.yml"
+        description: "Add, edit, reorder, or delete gigs. Past shows automatically move to the 'Past' section based on date."
+        fields:
+          - label: "Shows"
+            name: "shows"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.venue}}, {{fields.place}}"
+            fields:
+              - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - { label: "Venue", name: "venue", widget: "string" }
+              - { label: "Place / City", name: "place", widget: "string" }
+              - { label: "Ticket URL", name: "url", widget: "string", required: false, default: "#" }
+
+  - name: videos
+    label: "Videos"
+    icon: "video"
+    files:
+      - name: videos
+        label: "Video list"
+        file: "_data/videos.yml"
+        description: "Drag to reorder the videos shown on the Video page."
+        fields:
+          - label: "Videos"
+            name: "videos"
+            widget: "list"
+            summary: "YouTube ID: {{fields.id}}"
+            fields:
+              - { label: "YouTube video ID", name: "id", widget: "string", hint: "The part after watch?v= in a YouTube URL" }
+              - { label: "Start at (seconds)", name: "start", widget: "number", required: false, value_type: "int", min: 0, hint: "Leave blank to start from the beginning" }
