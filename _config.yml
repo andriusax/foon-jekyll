@@ -1,0 +1,13 @@
+title: FOON
+description: Electro-acoustic duo Foon — debut EP Everything Is, 2026.
+url: ""
+baseurl: ""
+
+plugins:
+  - jekyll-seo-tag
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

@@ -1,0 +1,19 @@
+---
+layout: default
+title: Video — FOON
+page_title: Video
+permalink: /video/
+---
+
+<section class="videos">
+  {% for v in site.data.videos %}
+    <div class="video-embed">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/{{ v.id }}{% if v.start %}?start={{ v.start }}{% endif %}"
+        title="YouTube video"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
+  {% endfor %}
+</section>

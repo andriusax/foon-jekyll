@@ -1,0 +1,38 @@
+---
+layout: default
+title: Shows — FOON
+page_title: Shows
+permalink: /shows/
+---
+
+<section class="shows">
+  <div class="shows__section">
+    <h2 class="shows__heading">Upcoming</h2>
+    {% for s in site.data.shows.upcoming %}
+      <article class="show">
+        <div class="show__date">
+          <span class="show__day">{{ s.day }}</span>
+          <span class="show__month">{{ s.month }}</span>
+        </div>
+        <div class="show__venue">{{ s.venue | upcase }}</div>
+        <div class="show__place">{{ s.place | upcase }}</div>
+        <a class="show__action" href="{{ s.url }}">Tickets</a>
+      </article>
+    {% endfor %}
+  </div>
+
+  <div class="shows__section">
+    <h2 class="shows__heading shows__heading--past">Past</h2>
+    {% for s in site.data.shows.past %}
+      <article class="show show--past">
+        <div class="show__date">
+          <span class="show__day">{{ s.day }}</span>
+          <span class="show__month">{{ s.month }}</span>
+        </div>
+        <div class="show__venue">{{ s.venue | upcase }}</div>
+        <div class="show__place">{{ s.place | upcase }}</div>
+        <span class="show__action show__action--disabled">Tickets</span>
+      </article>
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ page.title | default: "FOON" }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Foon">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <link rel="icon" href="{{ '/icon.png' | relative_url }}" type="image/png">
+    <link rel="icon" href="{{ '/icon.svg' | relative_url }}" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{{ '/icon.png' | relative_url }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jura:wght@400;500;700&display=swap">
+
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    {% seo %}
+  </head>
+
+  <body class="site">
+    <div class="site__top">
+      <div class="site__bg" aria-hidden="true"></div>
+
+      <header class="site__header">
+        <nav class="nav" aria-label="Primary">
+          <ol class="nav__list">
+            {% assign nav_items = "Home,/|About,/about/|Shows,/shows/|Releases,/releases/|Video,/video/" | split: "|" %}
+            {% for entry in nav_items %}
+              {% assign parts = entry | split: "," %}
+              {% assign label = parts[0] %}
+              {% assign href = parts[1] %}
+              {% assign is_active = false %}
+              {% if href == "/" and page.url == "/" %}{% assign is_active = true %}{% endif %}
+              {% if href != "/" and page.url contains href %}{% assign is_active = true %}{% endif %}
+              <li>
+                <span class="nav__num">{{ forloop.index0 }}</span>
+                <a class="nav__link{% if is_active %} is-active{% endif %}" href="{{ href | relative_url }}">{{ label }}</a>
+              </li>
+            {% endfor %}
+          </ol>
+        </nav>
+
+        <span class="brand">FOON</span>
+
+        <div class="page-title" aria-hidden="true">{{ page.page_title }}</div>
+      </header>
+
+      <main class="site__main">
+        {{ content }}
+      </main>
+    </div>
+
+    <footer class="site__footer">
+      <a class="footer__email" href="mailto:foon.sound@gmail.com">foon.sound@gmail.com</a>
+
+      <ul class="footer__socials">
+        <li><a href="https://www.instagram.com/foon_music/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@Foonsound" target="_blank" rel="noopener">Youtube</a></li>
+        <li><a href="https://linktr.ee/foon.sound" target="_blank" rel="noopener">Linktree</a></li>
+      </ul>
+
+      <p class="footer__copy">© 2026 <a href="https://github.com/" target="_blank" rel="noopener">Andrius Dereviancenko</a></p>
+    </footer>
+  </body>
+</html>
