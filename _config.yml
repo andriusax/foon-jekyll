@@ -1,6 +1,6 @@
 title: FOON
 description: Electro-acoustic duo Foon — debut EP Everything Is, 2026.
-url: "https://foon-music.netlify.app"
+url: "https://andriusax.github.io"
 baseurl: ""
 
 plugins:
@@ -11,7 +11,3 @@ defaults:
       path: ""
     values:
       layout: default
-  - scope:
-      path: "admin"
-    values:
-      layout: null

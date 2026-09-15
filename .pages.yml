@@ -1,0 +1,72 @@
+media:
+  input: assets/images
+  output: /assets/images
+
+content:
+  - name: shows
+    label: Shows
+    path: _data/shows.yml
+    type: file
+    description: "Add, edit, reorder, or delete gigs. Past shows move to the 'Past' section automatically, based on the date."
+    fields:
+      - name: shows
+        label: Shows
+        type: object
+        list:
+          default: []
+        fields:
+          - { name: date, label: Date, type: date, options: { format: yyyy-MM-dd } }
+          - { name: venue, label: Venue, type: string }
+          - { name: place, label: Place / City, type: string }
+          - { name: url, label: Ticket URL, type: string, required: false }
+
+  - name: releases
+    label: Releases
+    path: _data/releases.yml
+    type: file
+    description: "Records and EPs on the Releases page. Leave a link empty to hide that button."
+    fields:
+      - name: releases
+        label: Releases
+        type: object
+        list:
+          default: []
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: year, label: Year, type: string }
+          - { name: cover, label: Cover image, type: image, required: false }
+          - { name: listen_url, label: Listen URL, type: string, required: false, description: "Spotify, Bandcamp, etc. Empty hides the Listen button." }
+          - { name: buy_url, label: Buy URL, type: string, required: false, description: "Empty hides the Buy button." }
+
+  - name: about
+    label: About
+    path: _data/about.yml
+    type: file
+    description: "Promo image, intro text, and member bios on the About page."
+    fields:
+      - { name: image, label: Promo image, type: image, required: false }
+      - { name: intro, label: Intro text, type: text, description: "Leave a blank line between paragraphs." }
+      - name: bios
+        label: Member bios
+        type: object
+        list:
+          default: []
+        fields:
+          - { name: name, label: Name, type: string }
+          - { name: role, label: Instruments / role, type: string, description: "e.g. Saxophone, effects, electronics" }
+          - { name: bio, label: Bio, type: text }
+
+  - name: videos
+    label: Videos
+    path: _data/videos.yml
+    type: file
+    description: "Reorder or change the videos shown on the Video page."
+    fields:
+      - name: videos
+        label: Videos
+        type: object
+        list:
+          default: []
+        fields:
+          - { name: id, label: YouTube video ID, type: string, description: "The part after watch?v= in a YouTube URL" }
+          - { name: start, label: Start at (seconds), type: number, required: false, description: "Leave blank to start from the beginning" }
