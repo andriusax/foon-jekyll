@@ -1,6 +1,6 @@
 releases:
-  - title: "Everything Is"
+  - title: Everything Is
     year: "2026"
-    cover: ""
-    listen_url: ""
+    cover: /assets/images/cover.jpg
+    listen_url: https://foonsound.bandcamp.com/album/everything-is
     buy_url: ""
