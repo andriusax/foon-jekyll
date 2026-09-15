@@ -1,9 +1,9 @@
 shows:
-  - url: https://ra.co/events/2524577
-    date: 2026-09-18
+  - date: 2026-09-18
     venue: Cinetol
     place: Amsterdam, NL
-  - url: https://splendoramsterdam.com/agenda/111605683/orbits-festival-2026
-    date: 2026-01-18
-    venue: Spleandor
+    url: https://ra.co/events/2524577
+  - date: 2026-01-18
+    venue: Splendor
     place: Amsterdam, NL
+    url: https://splendoramsterdam.com/agenda/111605683/orbits-festival-2026
