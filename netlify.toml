@@ -1,0 +1,18 @@
+[build]
+  publish = "_site"
+  command = "bundle exec jekyll build"
+
+[build.environment]
+  JEKYLL_ENV = "production"
+  RUBY_VERSION = "3.3.5"
+
+# Decap CMS lives at /admin/ and is a single-page app — always serve its index.
+[[redirects]]
+  from = "/admin"
+  to = "/admin/"
+  status = 301
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"

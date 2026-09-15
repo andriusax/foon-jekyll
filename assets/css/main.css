@@ -228,6 +228,12 @@ a:hover { text-decoration: underline; }
 }
 
 .about__image { grid-column: 1; grid-row: 1; }
+/* Sized only when a promo image has been set in _data/about.yml */
+.about__image[style] {
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+}
 .about__text  { grid-column: 2; grid-row: 1; }
 .about__bios  { grid-column: 1; grid-row: 2; justify-self: end; }
 
@@ -309,6 +315,10 @@ a:hover { text-decoration: underline; }
 }
 
 /* ---------- Releases page ---------- */
+.releases {
+  display: grid;
+  gap: var(--space-7);
+}
 .release {
   position: relative;
   height: 20rem;
@@ -320,6 +330,8 @@ a:hover { text-decoration: underline; }
   width: 20rem;
   height: 20rem;
   background: rgba(220, 220, 220, 0.95);
+  background-size: cover;
+  background-position: center;
 }
 .release__row {
   position: absolute;

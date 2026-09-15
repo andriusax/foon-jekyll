@@ -5,18 +5,22 @@ page_title: Releases
 permalink: /releases/
 ---
 
-<section class="release">
-  <div class="release__cover" role="img" aria-label="Release cover"></div>
+<section class="releases">
+  {% for r in site.data.releases.releases %}
+    <article class="release">
+      <div class="release__cover"{% if r.cover and r.cover != "" %} style="background-image: url('{{ r.cover | relative_url }}')"{% endif %} role="img" aria-label="{{ r.title }} cover"></div>
 
-  <div class="release__row">
-    <div class="release__actions">
-      <a class="btn" href="#">Listen</a>
-      <a class="btn" href="#">Buy</a>
-    </div>
+      <div class="release__row">
+        <div class="release__actions">
+          {% if r.listen_url and r.listen_url != "" %}<a class="btn" href="{{ r.listen_url }}" target="_blank" rel="noopener">Listen</a>{% endif %}
+          {% if r.buy_url and r.buy_url != "" %}<a class="btn" href="{{ r.buy_url }}" target="_blank" rel="noopener">Buy</a>{% endif %}
+        </div>
 
-    <div class="release__info">
-      <span class="release__year">2026</span>
-      <h2 class="release__title">Everything Is</h2>
-    </div>
-  </div>
+        <div class="release__info">
+          <span class="release__year">{{ r.year }}</span>
+          <h2 class="release__title">{{ r.title }}</h2>
+        </div>
+      </div>
+    </article>
+  {% endfor %}
 </section>
