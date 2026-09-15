@@ -6,9 +6,8 @@ backend:
 media_folder: "assets/images"
 public_folder: "/assets/images"
 
-# TODO: set both to the live site URL once Netlify is connected, e.g. https://foon.netlify.app
-site_url: ""
-display_url: ""
+site_url: "https://foon-music.netlify.app"
+display_url: "https://foon-music.netlify.app"
 
 collections:
   - name: shows
