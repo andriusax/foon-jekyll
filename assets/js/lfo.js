@@ -25,14 +25,19 @@
   var accentFaded = 'rgba(237, 52, 36, 0.35)';
   var last = performance.now();
   var targets = [];
-  var bg = document.querySelector('.site__bg');
+  var glow = document.querySelector('[data-lfo-glow]');
   var rateOut = root.querySelector('[data-lfo-rate]');
+  var faceEls = [], faceBaseFilters = [];
 
   function toFreq(v) { return FREQ_MIN * Math.pow(FREQ_MAX / FREQ_MIN, v); }
 
   function collectTargets() {
     targets = [];
-    [].forEach.call(document.querySelectorAll('.site__bg-fx'), function (el) {
+    faceEls = [].slice.call(document.querySelectorAll('.site__bg-fx'));
+    faceBaseFilters = faceEls.map(function (el) {
+      return getComputedStyle(el).filter.replace('none', '');
+    });
+    faceEls.forEach(function (el) {
       [].push.apply(targets, el.getAnimations());
     });
   }
@@ -106,14 +111,15 @@
     targets.forEach(function (a) { a.playbackRate = rate; });
     rateOut.textContent = '\u00d7' + rate.toFixed(1);
 
-    // and physically move the backdrop with the wave: a bob and a
-    // breathing zoom that trace the LFO output one-for-one. Base scale
-    // 1.02 keeps the edges covered while it travels.
-    if (bg) {
-      bg.style.transform =
-        'translateY(' + ((0.5 - v) * 14).toFixed(1) + 'px)' +
-        ' scale(' + (1.02 + v * 0.03).toFixed(3) + ')';
-    }
+    // the faces throb with the wave: their brightness rides the output
+    // on top of each layer's own base filter
+    var glowAmt = ' brightness(' + (0.7 + v * 0.8).toFixed(3) + ')';
+    faceEls.forEach(function (el, i) {
+      el.style.filter = faceBaseFilters[i] + glowAmt;
+    });
+
+    // and the screen edges glow with it
+    if (glow) glow.style.opacity = (v * 0.85).toFixed(3);
 
     trace.push(v);
     if (trace.length > scope.clientWidth) trace.splice(0, trace.length - scope.clientWidth);
