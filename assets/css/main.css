@@ -601,16 +601,25 @@ a:hover { text-decoration: underline; }
 }
 .lfo__wave {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--space-2) 0;
   background: transparent;
   border: 1px solid var(--color-accent-faded);
   color: var(--color-accent-faded);
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.08em;
   cursor: pointer;
   transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+}
+.lfo__wave svg {
+  width: 1.9rem;
+  height: 0.95rem;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
 .lfo__wave:hover {
   border-color: var(--color-accent);
@@ -898,7 +907,8 @@ a:hover { text-decoration: underline; }
   }
   .lfo__scope { height: 3.5rem; }
   .lfo__depth-slot input { width: 7rem; }
-  .lfo__wave { padding: var(--space-1) 0; font-size: 0.7rem; }
+  .lfo__wave { padding: var(--space-1) 0; }
+  .lfo__wave svg { width: 1.6rem; height: 0.8rem; }
   .lfo-glow { box-shadow: inset 0 0 55px 2px var(--color-accent); }
 
   .brand { right: 1rem; }
