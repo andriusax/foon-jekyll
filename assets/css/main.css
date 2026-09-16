@@ -607,7 +607,7 @@ a:hover { text-decoration: underline; }
   padding: var(--space-2) 0;
   background: transparent;
   border: 1px solid var(--color-accent-faded);
-  color: var(--color-accent-faded);
+  color: rgba(237, 52, 36, 0.8);
   cursor: pointer;
   transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
 }
@@ -617,7 +617,7 @@ a:hover { text-decoration: underline; }
   display: block;
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.5;
+  stroke-width: 2;
   stroke-linejoin: round;
   stroke-linecap: round;
 }
