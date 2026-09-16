@@ -541,6 +541,7 @@ a:hover { text-decoration: underline; }
   .site__top {
     padding: var(--space-1);
     min-height: 200vh;
+    min-height: 200lvh;
   }
 
   .site__footer { padding: var(--space-1); }
@@ -549,6 +550,7 @@ a:hover { text-decoration: underline; }
     position: absolute;
     display: block;
     height: 200vh;
+    height: 200lvh;
   }
   .site__bg::before,
   .site__bg::after {
@@ -556,9 +558,10 @@ a:hover { text-decoration: underline; }
     left: 0;
     width: 100%;
     height: 100vh;
+    height: 100lvh;
   }
   .site__bg::before { top: 0; }
-  .site__bg::after  { top: 100vh; }
+  .site__bg::after  { top: 100vh; top: 100lvh; }
 
   /* Photos stack vertically here, so the face layers follow suit
      instead of sitting as left/right halves. */
@@ -568,15 +571,16 @@ a:hover { text-decoration: underline; }
     right: auto;
     width: 100%;
     height: 100vh;
+    height: 100lvh;
     bottom: auto;
   }
   .site__bg-fx--l1,
   .site__bg-fx--l2,
   .site__bg-fx--l3 { top: 0; }
   .site__bg-fx--r1,
-  .site__bg-fx--r2 { top: 100vh; }
+  .site__bg-fx--r2 { top: 100vh; top: 100lvh; }
   .site__bg-base--l { top: 0; }
-  .site__bg-base--r { top: 100vh; }
+  .site__bg-base--r { top: 100vh; top: 100lvh; }
 
   .brand { right: 1rem; }
 
