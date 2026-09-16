@@ -1,19 +1,23 @@
 // A little LFO for the home page. The output value (0..1) drives the
-// playbackRate of the background face animations, so the ghosts speed up
-// and slow down with the wave. The scope is a scrolling trace of the
-// output, drawn in the site accent colour.
+// playbackRate and brightness of the background face animations and a
+// glow around the screen edges. The scope is a scrolling trace of the
+// output, drawn as SVG — canvas is deliberately avoided, since browser
+// fingerprint protections (Brave's, notably) blank or poison canvas.
 (function () {
   var root = document.querySelector('[data-lfo]');
   if (!root) return;
 
-  var scope = root.querySelector('[data-lfo-scope]');
   var readout = root.querySelector('[data-lfo-readout]');
+  var rateOut = root.querySelector('[data-lfo-rate]');
   var freqInput = root.querySelector('[data-lfo-freq]');
   var waveButtons = [].slice.call(root.querySelectorAll('[data-lfo-wave]'));
-  var ctx = scope.getContext('2d');
+  var traceEl = root.querySelector('[data-lfo-trace]');
+  var dotEl = root.querySelector('[data-lfo-dot]');
+  var glow = document.querySelector('[data-lfo-glow]');
 
   var FREQ_MIN = 0.05, FREQ_MAX = 8;   // Hz, slider maps log between these
   var RATE_MIN = 0,    RATE_MAX = 7;   // playbackRate: full freeze to a whip
+  var N = 300;                         // scope samples = viewBox width
 
   var wave = 'sine';
   var freq = toFreq(+freqInput.value);
@@ -21,12 +25,8 @@
   var held = Math.random();            // sample-and-hold value for RND
   var heldCycle = -1;
   var trace = [];
-  var accent = '#ed3424';
-  var accentFaded = 'rgba(237, 52, 36, 0.35)';
   var last = performance.now();
   var targets = [];
-  var glow = document.querySelector('[data-lfo-glow]');
-  var rateOut = root.querySelector('[data-lfo-rate]');
   var faceEls = [], faceBaseFilters = [];
 
   function toFreq(v) { return FREQ_MIN * Math.pow(FREQ_MAX / FREQ_MIN, v); }
@@ -52,48 +52,19 @@
     }
   }
 
-  function setupCanvas() {
-    var dpr = window.devicePixelRatio || 1;
-    var w = scope.clientWidth, h = scope.clientHeight;
-    scope.width = Math.round(w * dpr);
-    scope.height = Math.round(h * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var styles = getComputedStyle(document.documentElement);
-    accent = (styles.getPropertyValue('--color-accent') || accent).trim();
-    accentFaded = (styles.getPropertyValue('--color-accent-faded') || accentFaded).trim();
-    if (trace.length > w) trace.splice(0, trace.length - w);
-  }
+  // viewBox is 300x100 with a 6-unit pad top and bottom
+  function y(v) { return (6 + (1 - v) * 88).toFixed(1); }
 
   function draw() {
-    var w = scope.clientWidth, h = scope.clientHeight;
-    var pad = 6;
-    ctx.clearRect(0, 0, w, h);
-
-    // centre line
-    ctx.strokeStyle = accentFaded;
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(0, h / 2);
-    ctx.lineTo(w, h / 2);
-    ctx.stroke();
-
-    if (!trace.length) return;
-    var y = function (v) { return pad + (1 - v) * (h - 2 * pad); };
-    var offset = w - trace.length;
-
-    ctx.strokeStyle = accent;
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.moveTo(offset, y(trace[0]));
-    for (var i = 1; i < trace.length; i++) ctx.lineTo(offset + i, y(trace[i]));
-    ctx.stroke();
-
-    // the "now" point
-    var vNow = trace[trace.length - 1];
-    ctx.fillStyle = accent;
-    ctx.beginPath();
-    ctx.arc(w - 1, y(vNow), 3, 0, 2 * Math.PI);
-    ctx.fill();
+    var offset = N - trace.length;
+    var pts = '';
+    for (var i = 0; i < trace.length; i++) {
+      pts += (offset + i) + ',' + y(trace[i]) + ' ';
+    }
+    traceEl.setAttribute('points', pts);
+    var cy = y(trace[trace.length - 1]);
+    dotEl.setAttribute('y1', cy);
+    dotEl.setAttribute('y2', cy);
   }
 
   function tick(now) {
@@ -109,7 +80,7 @@
     if (!targets.length) collectTargets();
     var rate = RATE_MIN + v * (RATE_MAX - RATE_MIN);
     targets.forEach(function (a) { a.playbackRate = rate; });
-    rateOut.textContent = '\u00d7' + rate.toFixed(1);
+    rateOut.textContent = '×' + rate.toFixed(1);
 
     // the faces throb with the wave: their brightness rides the output
     // on top of each layer's own base filter
@@ -122,7 +93,7 @@
     if (glow) glow.style.opacity = (v * 0.85).toFixed(3);
 
     trace.push(v);
-    if (trace.length > scope.clientWidth) trace.splice(0, trace.length - scope.clientWidth);
+    if (trace.length > N) trace.splice(0, trace.length - N);
     draw();
     requestAnimationFrame(tick);
   }
@@ -146,11 +117,6 @@
     updateReadout();
   });
 
-  addEventListener('resize', setupCanvas);
-  // the panel can resize after init (late CSS or font load) — keep the
-  // canvas bitmap matched to its on-screen size or the trace corrupts
-  if ('ResizeObserver' in window) new ResizeObserver(setupCanvas).observe(scope);
-  setupCanvas();
   updateReadout();
   requestAnimationFrame(function (t) { last = t; tick(t); });
 })();

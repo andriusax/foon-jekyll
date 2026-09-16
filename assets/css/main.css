@@ -491,6 +491,20 @@ a:hover { text-decoration: underline; }
   height: 5.5rem;
   border: 1px solid var(--color-accent-faded);
 }
+.lfo__scope-mid {
+  stroke: var(--color-accent-faded);
+  stroke-width: 1;
+}
+.lfo__scope-trace {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+.lfo__scope-dot {
+  stroke: var(--color-accent);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
 .lfo__waves {
   display: flex;
   gap: var(--space-2);

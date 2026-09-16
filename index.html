@@ -14,7 +14,11 @@ permalink: /
       <span class="lfo__readout" data-lfo-readout>0.63 Hz</span>
     </div>
 
-    <canvas class="lfo__scope" data-lfo-scope aria-hidden="true"></canvas>
+    <svg class="lfo__scope" data-lfo-scope viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true">
+      <line class="lfo__scope-mid" x1="0" y1="50" x2="300" y2="50" vector-effect="non-scaling-stroke"></line>
+      <polyline class="lfo__scope-trace" data-lfo-trace points="" vector-effect="non-scaling-stroke"></polyline>
+      <line class="lfo__scope-dot" data-lfo-dot x1="299" y1="50" x2="299" y2="50" vector-effect="non-scaling-stroke"></line>
+    </svg>
 
     <div class="lfo__waves" role="group" aria-label="Waveform">
       <button class="lfo__wave is-active" type="button" data-lfo-wave="sine" aria-pressed="true">SIN</button>
