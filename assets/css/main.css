@@ -891,25 +891,11 @@ a:hover { text-decoration: underline; }
   .site__bg-glow--l { top: 0; }
   .site__bg-glow--r { top: var(--bgh); }
 
-  /* The LFO docks as a compact bar at the bottom of the screen, like a
-     synth transport — the photos stack vertically here and the second
-     one is a full screen down, so a fixed bar keeps the controls in
-     reach while either photo is in view. */
-  .lfo {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: var(--space-3);
-    width: calc(100vw - 2 * var(--space-3));
-    z-index: 5;
-    padding: var(--space-3);
-    gap: var(--space-2);
-  }
-  .lfo__scope { height: 3.5rem; }
-  .lfo__depth-slot input { width: 7rem; }
-  .lfo__wave { padding: var(--space-1) 0; }
-  .lfo__wave svg { width: 1.6rem; height: 0.8rem; }
-  .lfo-glow { box-shadow: inset 0 0 55px 2px var(--color-accent); }
+  /* The LFO is desktop-only: per-frame modulation of five masked
+     full-screen layers glitches mobile GPUs. Small screens get the
+     plain self-running background instead. */
+  .lfo,
+  .lfo-glow { display: none; }
 
   .brand { right: 1rem; }
 

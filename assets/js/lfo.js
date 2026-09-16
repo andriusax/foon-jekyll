@@ -9,6 +9,11 @@
   var root = document.querySelector('[data-lfo]');
   if (!root) return;
 
+  // Desktop-only: per-frame modulation of five masked full-screen layers
+  // glitches mobile GPUs (zoom shimmer, mask drops). Small screens keep
+  // the plain self-running background — the panel is hidden in CSS.
+  if (matchMedia('(max-width: 720px)').matches) return;
+
   var readout = root.querySelector('[data-lfo-readout]');
   var rateOut = root.querySelector('[data-lfo-rate]');
   var freqInput = root.querySelector('[data-lfo-freq]');
