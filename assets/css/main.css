@@ -100,6 +100,22 @@ a:hover { text-decoration: underline; }
   transform: scale(1.06);            /* hides the blur's soft edges */
 }
 
+/* Home gets the same plate treatment, just bright: without it, a face
+   flying off on the LFO would leave its original still in the photo. */
+.is-home .site__bg::before,
+.is-home .site__bg::after {
+  filter: blur(22px);
+  transform: scale(1.06);
+}
+.is-home .site__bg-base { opacity: 1; }
+.is-home .site__bg-base--l,
+.is-home .site__bg-base--r { filter: none; }
+.is-home .site__bg-fx--l1,
+.is-home .site__bg-fx--l2,
+.is-home .site__bg-fx--l3 { filter: contrast(1.05); }
+.is-home .site__bg-fx--r1,
+.is-home .site__bg-fx--r2 { filter: contrast(1.15); }
+
 /* The sharp photo, with a hole punched where each face is. The plate
    behind shows through those holes, so nothing static remains there. */
 .site__bg-base {
@@ -308,6 +324,10 @@ a:hover { text-decoration: underline; }
   .site__bg-glow { animation: none !important; }
   .site:not(.is-home) .site__bg-fx  { opacity: 0.85; }
   .site:not(.is-home) .site__bg-glow { opacity: 0.4; }
+  /* home falls back to the plain photo: no holes, no blur, no layers */
+  .is-home .site__bg::before,
+  .is-home .site__bg::after { filter: none; transform: none; }
+  .is-home .site__bg-base { opacity: 0; }
 }
 
 /* ---------- Header ---------- */
