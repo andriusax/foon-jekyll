@@ -980,3 +980,45 @@ a:hover { text-decoration: underline; }
   .show__place { grid-area: place; }
   .show__action { grid-area: button; }
 }
+
+/* On small screens the faces sit near the side edges, so their desktop
+   paths hug the sides and leave the screen. These overrides pull every
+   excursion toward the centre of the viewport: each face still launches
+   from its hole, but flies inward. */
+@media (max-width: 720px) {
+@keyframes face-a {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1);    opacity: 0.65; }
+  28%  { transform: translate(calc(var(--lfo-depth) * 11.0vw), calc(var(--lfo-depth) * -8.8vh)) rotate(calc(var(--lfo-depth) * 15.0deg)) scale(1.03); opacity: 1; }
+  52%  { transform: translate(calc(var(--lfo-depth) * 26.0vw), calc(var(--lfo-depth) * 30.8vh)) rotate(calc(var(--lfo-depth) * 30.0deg))   scale(1.01); opacity: 0.8; }
+  76%  { transform: translate(calc(var(--lfo-depth) * -34.0vw), calc(var(--lfo-depth) * 22.0vh)) rotate(calc(var(--lfo-depth) * -12.0deg)) scale(1.04); opacity: 0.95; }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1);    opacity: 0.65; }
+}
+@keyframes face-b {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1.02); opacity: 1; }
+  30%  { transform: translate(calc(var(--lfo-depth) * -56.0vw), calc(var(--lfo-depth) * 4.4vh)) rotate(calc(var(--lfo-depth) * -15.0deg)) scale(1);    opacity: 0.7; }
+  55%  { transform: translate(calc(var(--lfo-depth) * -81.0vw), calc(var(--lfo-depth) * -44.0vh)) rotate(calc(var(--lfo-depth) * -30.0deg))   scale(1.03); opacity: 0.9; }
+  78%  { transform: translate(calc(var(--lfo-depth) * -31.0vw), calc(var(--lfo-depth) * -13.2vh)) rotate(calc(var(--lfo-depth) * 9.0deg)) scale(1.01); opacity: 0.6; }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1.02); opacity: 1; }
+}
+@keyframes face-e {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1.01); opacity: 0.6; }
+  26%  { transform: translate(calc(var(--lfo-depth) * -28.0vw), calc(var(--lfo-depth) * -4.4vh)) rotate(calc(var(--lfo-depth) * 12.0deg)) scale(1.03); opacity: 0.95; }
+  50%  { transform: translate(calc(var(--lfo-depth) * 2.0vw), calc(var(--lfo-depth) * 44.0vh)) rotate(calc(var(--lfo-depth) * 27.0deg)) scale(1);    opacity: 1; }
+  74%  { transform: translate(calc(var(--lfo-depth) * -43.0vw), calc(var(--lfo-depth) * 17.6vh)) rotate(calc(var(--lfo-depth) * -6.0deg)) scale(1.02); opacity: 0.75; }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1.01); opacity: 0.6; }
+}
+@keyframes face-c {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1);    opacity: 0.7; }
+  24%  { transform: translate(calc(var(--lfo-depth) * -31.0vw), calc(var(--lfo-depth) * -13.2vh)) rotate(calc(var(--lfo-depth) * -12.0deg)) scale(1.03); opacity: 1; }
+  50%  { transform: translate(calc(var(--lfo-depth) * -51.0vw), calc(var(--lfo-depth) * 30.8vh)) rotate(calc(var(--lfo-depth) * -27.0deg)) scale(1.01); opacity: 0.85; }
+  76%  { transform: translate(calc(var(--lfo-depth) * -1.0vw), calc(var(--lfo-depth) * 8.8vh)) rotate(calc(var(--lfo-depth) * 15.0deg)) scale(1.04); opacity: 0.95; }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1);    opacity: 0.7; }
+}
+@keyframes face-d {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1.02); opacity: 1; }
+  26%  { transform: translate(calc(var(--lfo-depth) * -36.0vw), calc(var(--lfo-depth) * -8.8vh)) rotate(calc(var(--lfo-depth) * 9.0deg)) scale(1);    opacity: 0.7; }
+  54%  { transform: translate(calc(var(--lfo-depth) * -6.0vw), calc(var(--lfo-depth) * -44.0vh)) rotate(calc(var(--lfo-depth) * 24.0deg)) scale(1.03); opacity: 0.9; }
+  80%  { transform: translate(calc(var(--lfo-depth) * -46.0vw), calc(var(--lfo-depth) * -4.4vh)) rotate(calc(var(--lfo-depth) * -9.0deg)) scale(1.01); opacity: 0.65; }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1.02); opacity: 1; }
+}
+}
