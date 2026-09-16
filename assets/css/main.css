@@ -141,9 +141,56 @@ a:hover { text-decoration: underline; }
   mask-composite: intersect;
 }
 
+/* A breathing light over each photo's lit doorway — amber on the left,
+   blue on the right — with the occasional dip, like a lamp flickering.
+   Painted between the still photo and the moving faces. */
+.site__bg-glow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  opacity: 0;                        /* off on the home page */
+  z-index: 1;
+  mix-blend-mode: screen;
+  will-change: opacity;
+}
+.site__bg-glow--l {
+  left: 0;
+  background: radial-gradient(ellipse 26% 38% at 59% 44%,
+              rgba(255, 168, 66, 0.55), rgba(255, 168, 66, 0) 72%);
+}
+.site__bg-glow--r {
+  right: 0;
+  background: radial-gradient(ellipse 24% 36% at 61% 42%,
+              rgba(64, 128, 255, 0.5), rgba(64, 128, 255, 0) 72%);
+}
+.site:not(.is-home) .site__bg-glow--l { animation: glow-l 11s ease-in-out infinite; }
+.site:not(.is-home) .site__bg-glow--r { animation: glow-r 8.6s ease-in-out -3.2s infinite; }
+
+@keyframes glow-l {
+  0%   { opacity: 0.25; }
+  35%  { opacity: 0.75; }
+  41%  { opacity: 0.45; }            /* flicker dip */
+  43%  { opacity: 0.8; }
+  62%  { opacity: 0.9; }
+  65%  { opacity: 0.5; }             /* flicker dip */
+  67%  { opacity: 0.85; }
+  100% { opacity: 0.25; }
+}
+@keyframes glow-r {
+  0%   { opacity: 0.3; }
+  30%  { opacity: 0.8; }
+  47%  { opacity: 0.55; }            /* flicker dip */
+  49%  { opacity: 0.95; }
+  76%  { opacity: 0.6; }
+  79%  { opacity: 0.9; }
+  100% { opacity: 0.3; }
+}
+
 /* One layer per face: a copy of the photo masked down to a single head,
-   sitting on top of the still image. Each gets its own timing, so the
-   four faces drift out of step with one another. */
+   sitting on top of the still image. Each face wanders its own slow loop —
+   the transform pivots around that face (transform-origin), so the drift
+   carries a little sway and breath instead of a straight slide. */
 .site__bg-fx {
   position: absolute;
   top: 0;
@@ -172,19 +219,19 @@ a:hover { text-decoration: underline; }
 .site__bg-fx--l1 {
   -webkit-mask-image: radial-gradient(ellipse 17% 18% at 64% 37%, #000 35%, transparent 72%);
           mask-image: radial-gradient(ellipse 17% 18% at 64% 37%, #000 35%, transparent 72%);
-  animation: face-a 3.1s ease-in-out -0.7s infinite alternate;
+  transform-origin: 64% 37%;
 }
 .site__bg-fx--l2 {
   -webkit-mask-image: radial-gradient(ellipse 13% 12% at 91% 34%, #000 35%, transparent 72%);
           mask-image: radial-gradient(ellipse 13% 12% at 91% 34%, #000 35%, transparent 72%);
-  animation: face-b 4.3s ease-in-out -2.1s infinite alternate;
+  transform-origin: 91% 34%;
 }
-/* The lower head of the same pair — mirrors face-b, so the two
-   heads pull apart and back together instead of moving as a block. */
+/* The lower head of the same pair moves in counterphase, so the two
+   heads pull apart and drift back together. */
 .site__bg-fx--l3 {
   -webkit-mask-image: radial-gradient(ellipse 13% 12% at 93% 43%, #000 35%, transparent 72%);
           mask-image: radial-gradient(ellipse 13% 12% at 93% 43%, #000 35%, transparent 72%);
-  animation: face-e 4.9s ease-in-out -1.1s infinite alternate;
+  transform-origin: 93% 43%;
 }
 
 /* Right photo sits darker to begin with, so it is lifted a little */
@@ -197,39 +244,66 @@ a:hover { text-decoration: underline; }
 .site__bg-fx--r1 {
   -webkit-mask-image: radial-gradient(ellipse 16% 18% at 56% 36%, #000 35%, transparent 72%);
           mask-image: radial-gradient(ellipse 16% 18% at 56% 36%, #000 35%, transparent 72%);
-  animation: face-c 3.7s ease-in-out -1.4s infinite alternate;
+  transform-origin: 56% 36%;
 }
 .site__bg-fx--r2 {
   -webkit-mask-image: radial-gradient(ellipse 16% 17% at 81% 39%, #000 35%, transparent 72%);
           mask-image: radial-gradient(ellipse 16% 17% at 81% 39%, #000 35%, transparent 72%);
-  animation: face-d 5.1s ease-in-out -3.3s infinite alternate;
+  transform-origin: 81% 39%;
 }
 
-/* Four different paths, each with real vertical travel. Exaggerated on
-   purpose — scale the px values down once you have picked a direction. */
+/* Animations only run on inner pages — the keyframes drive opacity, so
+   assigning them on the home page would override its opacity: 0. */
+.site:not(.is-home) .site__bg-fx--l1 { animation: face-a 11.3s ease-in-out -2.8s infinite; }
+.site:not(.is-home) .site__bg-fx--l2 { animation: face-b 13.1s ease-in-out -5.2s infinite; }
+.site:not(.is-home) .site__bg-fx--l3 { animation: face-e  9.7s ease-in-out -1.9s infinite; }
+.site:not(.is-home) .site__bg-fx--r1 { animation: face-c 12.7s ease-in-out -7.4s infinite; }
+.site:not(.is-home) .site__bg-fx--r2 { animation: face-d 14.9s ease-in-out -4.1s infinite; }
+
+/* Each face wanders a closed loop (first and last frames match), with a
+   touch of rotation and scale around its own centre. Opacity stays in the
+   0.55-1 band so faces drift rather than blink. */
 @keyframes face-a {
-  from { transform: translate(-22px, -28px); opacity: 0.3; }
-  to   { transform: translate( 18px,  24px); opacity: 1; }
+  0%   { transform: translate(-14px, -18px) rotate(-0.7deg) scale(1);    opacity: 0.65; }
+  28%  { transform: translate( 10px,  -4px) rotate( 0.5deg) scale(1.03); opacity: 1; }
+  52%  { transform: translate( 16px,  14px) rotate( 1deg)   scale(1.01); opacity: 0.8; }
+  76%  { transform: translate( -8px,  10px) rotate(-0.4deg) scale(1.04); opacity: 0.95; }
+  100% { transform: translate(-14px, -18px) rotate(-0.7deg) scale(1);    opacity: 0.65; }
 }
 @keyframes face-b {
-  from { transform: translate( 16px,  26px); opacity: 1; }
-  to   { transform: translate(-20px, -30px); opacity: 0.35; }
+  0%   { transform: translate( 12px,  16px) rotate( 0.6deg) scale(1.02); opacity: 1; }
+  30%  { transform: translate( -6px,   2px) rotate(-0.5deg) scale(1);    opacity: 0.7; }
+  55%  { transform: translate(-16px, -20px) rotate(-1deg)   scale(1.03); opacity: 0.9; }
+  78%  { transform: translate(  4px,  -6px) rotate( 0.3deg) scale(1.01); opacity: 0.6; }
+  100% { transform: translate( 12px,  16px) rotate( 0.6deg) scale(1.02); opacity: 1; }
 }
 @keyframes face-e {
-  from { transform: translate(-18px, -24px); opacity: 0.35; }
-  to   { transform: translate( 22px,  28px); opacity: 1; }
+  0%   { transform: translate(-12px, -16px) rotate(-0.6deg) scale(1.01); opacity: 0.6; }
+  26%  { transform: translate(  6px,  -2px) rotate( 0.4deg) scale(1.03); opacity: 0.95; }
+  50%  { transform: translate( 18px,  20px) rotate( 0.9deg) scale(1);    opacity: 1; }
+  74%  { transform: translate(  0px,   8px) rotate(-0.2deg) scale(1.02); opacity: 0.75; }
+  100% { transform: translate(-12px, -16px) rotate(-0.6deg) scale(1.01); opacity: 0.6; }
 }
 @keyframes face-c {
-  from { transform: translate( 12px, -32px); opacity: 0.4; }
-  to   { transform: translate(-24px,  22px); opacity: 1; }
+  0%   { transform: translate(  8px, -22px) rotate( 0.7deg) scale(1);    opacity: 0.7; }
+  24%  { transform: translate(-10px,  -6px) rotate(-0.4deg) scale(1.03); opacity: 1; }
+  50%  { transform: translate(-18px,  14px) rotate(-0.9deg) scale(1.01); opacity: 0.85; }
+  76%  { transform: translate(  2px,   4px) rotate( 0.5deg) scale(1.04); opacity: 0.95; }
+  100% { transform: translate(  8px, -22px) rotate( 0.7deg) scale(1);    opacity: 0.7; }
 }
 @keyframes face-d {
-  from { transform: translate(-26px,  20px); opacity: 1; }
-  to   { transform: translate( 14px, -28px); opacity: 0.3; }
+  0%   { transform: translate(-18px,  12px) rotate(-0.8deg) scale(1.02); opacity: 1; }
+  26%  { transform: translate( -2px,  -4px) rotate( 0.3deg) scale(1);    opacity: 0.7; }
+  54%  { transform: translate( 10px, -20px) rotate( 0.8deg) scale(1.03); opacity: 0.9; }
+  80%  { transform: translate( -6px,  -2px) rotate(-0.3deg) scale(1.01); opacity: 0.65; }
+  100% { transform: translate(-18px,  12px) rotate(-0.8deg) scale(1.02); opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site__bg-fx { animation: none; opacity: 0.5; }
+  .site__bg-fx,
+  .site__bg-glow { animation: none !important; }
+  .site:not(.is-home) .site__bg-fx  { opacity: 0.85; }
+  .site:not(.is-home) .site__bg-glow { opacity: 0.4; }
 }
 
 /* ---------- Header ---------- */
@@ -371,17 +445,27 @@ a:hover { text-decoration: underline; }
 /* Only applied once reveal.js has run, so no-JS keeps everything visible. */
 .js-reveal .reveal {
   opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(30px);
+  filter: blur(10px);
+  transition:
+    opacity 0.9s ease,
+    filter 0.9s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .js-reveal .reveal.is-visible {
   opacity: 1;
   transform: none;
+  filter: none;
+}
+/* Blurring text is repaint-heavy, so phones get the plain fade-and-rise. */
+@media (max-width: 720px) {
+  .js-reveal .reveal { filter: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .js-reveal .reveal {
     opacity: 1;
     transform: none;
+    filter: none;
     transition: none;
   }
 }
@@ -585,6 +669,7 @@ a:hover { text-decoration: underline; }
   /* Photos stack vertically here, so the face layers follow suit
      instead of sitting as left/right halves. */
   .site__bg-base,
+  .site__bg-glow,
   .site__bg-fx {
     left: 0;
     right: auto;
@@ -599,6 +684,8 @@ a:hover { text-decoration: underline; }
   .site__bg-fx--r2 { top: var(--bgh); }
   .site__bg-base--l { top: 0; }
   .site__bg-base--r { top: var(--bgh); }
+  .site__bg-glow--l { top: 0; }
+  .site__bg-glow--r { top: var(--bgh); }
 
   .brand { right: 1rem; }
 
