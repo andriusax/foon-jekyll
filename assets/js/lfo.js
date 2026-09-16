@@ -42,7 +42,17 @@
     faceEls.forEach(function (el) {
       el.getAnimations().forEach(function (a) {
         a.pause();                     // the LFO owns the timeline now
-        targets.push({ anim: a, dur: a.effect.getTiming().duration });
+        // the CSS declares negative delays (for the free-running inner
+        // pages). They shift currentTime's zero point — and stripping
+        // them doesn't stick, since style recalcs re-sync CSS animation
+        // timing — so the mapping offsets by the delay instead.
+        var t = a.effect.getTiming();
+        // normalise into the first whole iteration: a negative time on a
+        // fill-none animation applies no keyframes at all, and one face's
+        // delay is large enough to keep it negative for every value
+        var off = t.delay % t.duration;
+        if (off < 0) off += t.duration;
+        targets.push({ anim: a, dur: t.duration, off: off });
       });
     });
   }
@@ -85,7 +95,7 @@
     // its hole, 1 = the far pose (half the loop — the paths close back
     // on themselves, so mapping the full loop made 0 and 1 identical)
     if (!targets.length) collectTargets();
-    targets.forEach(function (t) { t.anim.currentTime = v * t.dur * 0.5; });
+    targets.forEach(function (t) { t.anim.currentTime = t.off + v * t.dur * 0.5; });
     rateOut.textContent = Math.round(v * 100) + '%';
 
     // the faces throb with the wave: their brightness rides the output
