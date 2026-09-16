@@ -1,6 +1,8 @@
-// A little LFO for the home page. The output value (0..1) drives the
-// playbackRate and brightness of the background face animations and a
-// glow around the screen edges. The scope is a scrolling trace of the
+// A little LFO for the home page. The output value (0..1) is patched to
+// the POSITION of each face animation — like a real LFO on a destination,
+// it sets where the faces are along their motion path each frame, so only
+// the LFO frequency controls how fast they move. It also drives their
+// brightness and a glow around the screen edges. The scope is a scrolling trace of the
 // output, drawn as SVG — canvas is deliberately avoided, since browser
 // fingerprint protections (Brave's, notably) blank or poison canvas.
 (function () {
@@ -16,7 +18,6 @@
   var glow = document.querySelector('[data-lfo-glow]');
 
   var FREQ_MIN = 0.05, FREQ_MAX = 8;   // Hz, slider maps log between these
-  var RATE_MIN = 0,    RATE_MAX = 7;   // playbackRate: full freeze to a whip
   var N = 300;                         // scope samples = viewBox width
 
   var wave = 'sine';
@@ -38,7 +39,10 @@
       return getComputedStyle(el).filter.replace('none', '');
     });
     faceEls.forEach(function (el) {
-      [].push.apply(targets, el.getAnimations());
+      el.getAnimations().forEach(function (a) {
+        a.pause();                     // the LFO owns the timeline now
+        targets.push({ anim: a, dur: a.effect.getTiming().duration });
+      });
     });
   }
 
@@ -76,11 +80,11 @@
     if (cycle !== heldCycle) { heldCycle = cycle; held = Math.random(); }
     var v = sample(phase - cycle);
 
-    // modulate the background animation speed
+    // the output sets each face's position along its motion path —
+    // the wave's shape is the movement, its frequency is the speed
     if (!targets.length) collectTargets();
-    var rate = RATE_MIN + v * (RATE_MAX - RATE_MIN);
-    targets.forEach(function (a) { a.playbackRate = rate; });
-    rateOut.textContent = '×' + rate.toFixed(1);
+    targets.forEach(function (t) { t.anim.currentTime = v * t.dur; });
+    rateOut.textContent = Math.round(v * 100) + '%';
 
     // the faces throb with the wave: their brightness rides the output
     // on top of each layer's own base filter
@@ -90,7 +94,7 @@
     });
 
     // and the screen edges glow with it
-    if (glow) glow.style.opacity = (v * 0.85).toFixed(3);
+    if (glow) glow.style.opacity = (v * 0.4).toFixed(3);
 
     trace.push(v);
     if (trace.length > N) trace.splice(0, trace.length - N);
