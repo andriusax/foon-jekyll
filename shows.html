@@ -21,7 +21,7 @@ permalink: /shows/
           </div>
           <div class="show__venue">{{ s.venue | upcase }}</div>
           <div class="show__place">{{ s.place | upcase }}</div>
-          <a class="show__action" href="{{ s.url }}">Tickets</a>
+          <a class="show__action" href="{{ s.url }}" target="_blank" rel="noopener">Tickets</a>
         </article>
       {% endif %}
     {% endfor %}
@@ -39,7 +39,7 @@ permalink: /shows/
           </div>
           <div class="show__venue">{{ s.venue | upcase }}</div>
           <div class="show__place">{{ s.place | upcase }}</div>
-          <span class="show__action show__action--disabled">Tickets</span>
+          <a class="show__action" href="{{ s.url }}" target="_blank" rel="noopener">Tickets</a>
         </article>
       {% endif %}
     {% endfor %}
