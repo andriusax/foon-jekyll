@@ -20,6 +20,23 @@
     {% seo %}
   </head>
 
+  <script>
+    // Lock the background height to the viewport height measured at load.
+    // Mobile browsers change the viewport as the URL bar collapses, which
+    // otherwise re-measures the backgrounds mid-scroll. Only a width change
+    // (rotation, resize) re-locks it.
+    (function () {
+      var w = 0;
+      function lock() {
+        if (window.innerWidth === w) return;
+        w = window.innerWidth;
+        document.documentElement.style.setProperty('--bgh', window.innerHeight + 'px');
+      }
+      lock();
+      addEventListener('resize', lock);
+      addEventListener('orientationchange', function () { w = 0; lock(); });
+    })();
+  </script>
   <body class="site{% if page.url == '/' %} is-home{% endif %}">
     <div class="site__top">
       <div class="site__bg" aria-hidden="true">

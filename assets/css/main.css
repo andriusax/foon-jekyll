@@ -3,6 +3,9 @@
  */
 
 :root {
+  /* locked by a one-line script in the layout; the fallback only
+     applies before that runs, or with JS off */
+  --bgh: 100vh;
   --color-bg: #0d0d0d;
   --color-fg: #f4f4f4;
   --color-muted: rgba(244, 244, 244, 0.55);
@@ -540,8 +543,7 @@ a:hover { text-decoration: underline; }
 @media (max-width: 720px) {
   .site__top {
     padding: var(--space-1);
-    min-height: 200vh;
-    min-height: 200lvh;
+    min-height: calc(var(--bgh) * 2);
   }
 
   .site__footer { padding: var(--space-1); }
@@ -549,19 +551,17 @@ a:hover { text-decoration: underline; }
   .site__bg {
     position: absolute;
     display: block;
-    height: 200vh;
-    height: 200lvh;
+    height: calc(var(--bgh) * 2);
   }
   .site__bg::before,
   .site__bg::after {
     position: absolute;
     left: 0;
     width: 100%;
-    height: 100vh;
-    height: 100lvh;
+    height: var(--bgh);
   }
   .site__bg::before { top: 0; }
-  .site__bg::after  { top: 100vh; top: 100lvh; }
+  .site__bg::after  { top: var(--bgh); }
 
   /* Photos stack vertically here, so the face layers follow suit
      instead of sitting as left/right halves. */
@@ -570,17 +570,16 @@ a:hover { text-decoration: underline; }
     left: 0;
     right: auto;
     width: 100%;
-    height: 100vh;
-    height: 100lvh;
+    height: var(--bgh);
     bottom: auto;
   }
   .site__bg-fx--l1,
   .site__bg-fx--l2,
   .site__bg-fx--l3 { top: 0; }
   .site__bg-fx--r1,
-  .site__bg-fx--r2 { top: 100vh; top: 100lvh; }
+  .site__bg-fx--r2 { top: var(--bgh); }
   .site__bg-base--l { top: 0; }
-  .site__bg-base--r { top: 100vh; top: 100lvh; }
+  .site__bg-base--r { top: var(--bgh); }
 
   .brand { right: 1rem; }
 
