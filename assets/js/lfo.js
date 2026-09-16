@@ -9,11 +9,6 @@
   var root = document.querySelector('[data-lfo]');
   if (!root) return;
 
-  // Desktop-only: per-frame modulation of five masked full-screen layers
-  // glitches mobile GPUs (zoom shimmer, mask drops). Small screens keep
-  // the plain self-running background — the panel is hidden in CSS.
-  if (matchMedia('(max-width: 720px)').matches) return;
-
   var readout = root.querySelector('[data-lfo-readout]');
   var rateOut = root.querySelector('[data-lfo-rate]');
   var freqInput = root.querySelector('[data-lfo-freq]');
@@ -34,16 +29,13 @@
   var trace = [];
   var last = performance.now();
   var targets = [];
-  var faceEls = [], faceBaseFilters = [];
+  var faceEls = [];
 
   function toFreq(v) { return FREQ_MIN * Math.pow(FREQ_MAX / FREQ_MIN, v); }
 
   function collectTargets() {
     targets = [];
     faceEls = [].slice.call(document.querySelectorAll('.site__bg-fx'));
-    faceBaseFilters = faceEls.map(function (el) {
-      return getComputedStyle(el).filter.replace('none', '');
-    });
     faceEls.forEach(function (el) {
       el.getAnimations().forEach(function (a) {
         a.pause();                     // the LFO owns the timeline now
@@ -103,11 +95,16 @@
     targets.forEach(function (t) { t.anim.currentTime = t.off + v * t.dur * 0.5; });
     rateOut.textContent = Math.round(v * 100) + '%';
 
-    // the faces throb with the wave: their brightness rides the output
-    // on top of each layer's own base filter
-    var glowAmt = ' brightness(' + (0.7 + v * 0.8).toFixed(3) + ')';
-    faceEls.forEach(function (el, i) {
-      el.style.filter = faceBaseFilters[i] + glowAmt;
+    // the faces throb with the wave. This rides opacity, not filter:
+    // filter on an element that also has mask-image + mix-blend-mode
+    // forces the browser to rebuild the whole composited effect from
+    // scratch on every write, which is cheap on a desktop GPU but on a
+    // phone shows up as the layer being visibly rescaled or partially
+    // redrawn (reported as "the images zoom" / "cut in half") — worse
+    // the faster the wave runs. Opacity never needs that rebuild; the
+    // browser just blends two already-rendered layers.
+    faceEls.forEach(function (el) {
+      el.style.opacity = (0.55 + v * 0.45).toFixed(3);
     });
 
     // and the screen edges glow with it
