@@ -14,13 +14,22 @@ permalink: /
       <span class="lfo__readout" data-lfo-readout>0.07 Hz</span>
     </div>
 
-    <svg class="lfo__scope" data-lfo-scope viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true">
-      <line class="lfo__scope-mid" x1="0" y1="50" x2="300" y2="50" vector-effect="non-scaling-stroke"></line>
-      <polyline class="lfo__scope-trace" data-lfo-trace points="" vector-effect="non-scaling-stroke"></polyline>
-      <line class="lfo__scope-dot" data-lfo-dot x1="299" y1="50" x2="299" y2="50" vector-effect="non-scaling-stroke"></line>
-    </svg>
+    <div class="lfo__body">
+      <div class="lfo__depth">
+        <div class="lfo__depth-slot">
+          <input type="range" min="0" max="1" step="0.001" value="0.03" data-lfo-depth aria-label="LFO depth" aria-orientation="vertical">
+        </div>
+        <span class="lfo__depth-label">DPTH</span>
+      </div>
 
-    <div class="lfo__waves" role="group" aria-label="Waveform">
+      <div class="lfo__main">
+        <svg class="lfo__scope" data-lfo-scope viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true">
+          <line class="lfo__scope-mid" x1="0" y1="50" x2="300" y2="50" vector-effect="non-scaling-stroke"></line>
+          <polyline class="lfo__scope-trace" data-lfo-trace points="" vector-effect="non-scaling-stroke"></polyline>
+          <line class="lfo__scope-dot" data-lfo-dot x1="299" y1="50" x2="299" y2="50" vector-effect="non-scaling-stroke"></line>
+        </svg>
+
+        <div class="lfo__waves" role="group" aria-label="Waveform">
       <button class="lfo__wave is-active" type="button" data-lfo-wave="sine" aria-pressed="true">SIN</button>
       <button class="lfo__wave" type="button" data-lfo-wave="triangle" aria-pressed="false">TRI</button>
       <button class="lfo__wave" type="button" data-lfo-wave="square" aria-pressed="false">SQR</button>
@@ -28,10 +37,12 @@ permalink: /
       <button class="lfo__wave" type="button" data-lfo-wave="random" aria-pressed="false">RND</button>
     </div>
 
-    <label class="lfo__freq">
-      <span>FREQ</span>
-      <input type="range" min="0" max="1" step="0.001" value="0.066" data-lfo-freq aria-label="LFO frequency">
-    </label>
+        <label class="lfo__freq">
+          <span>FREQ</span>
+          <input type="range" min="0" max="1" step="0.001" value="0.066" data-lfo-freq aria-label="LFO frequency">
+        </label>
+      </div>
+    </div>
   </div>
 </section>
 

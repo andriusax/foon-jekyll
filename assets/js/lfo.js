@@ -12,6 +12,7 @@
   var readout = root.querySelector('[data-lfo-readout]');
   var rateOut = root.querySelector('[data-lfo-rate]');
   var freqInput = root.querySelector('[data-lfo-freq]');
+  var depthInput = root.querySelector('[data-lfo-depth]');
   var waveButtons = [].slice.call(root.querySelectorAll('[data-lfo-wave]'));
   var traceEl = root.querySelector('[data-lfo-trace]');
   var dotEl = root.querySelector('[data-lfo-dot]');
@@ -120,6 +121,14 @@
     freq = toFreq(+freqInput.value);
     updateReadout();
   });
+
+  // depth: how far the faces travel — scales every keyframe through
+  // the --lfo-depth custom property the paths are written in
+  function setDepth() {
+    document.documentElement.style.setProperty('--lfo-depth', depthInput.value);
+  }
+  depthInput.addEventListener('input', setDepth);
+  setDepth();
 
   updateReadout();
   requestAnimationFrame(function (t) { last = t; tick(t); });

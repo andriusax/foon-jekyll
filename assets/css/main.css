@@ -6,6 +6,8 @@
   /* locked by a one-line script in the layout; the fallback only
      applies before that runs, or with JS off */
   --bgh: 100vh;
+  /* how far the background faces travel; the home-page LFO drives this */
+  --lfo-depth: 0.03;
   --color-bg: #0d0d0d;
   --color-fg: #f4f4f4;
   --color-muted: rgba(244, 244, 244, 0.55);
@@ -266,39 +268,39 @@ a:hover { text-decoration: underline; }
    touch of rotation and scale around its own centre. Opacity stays in the
    0.55-1 band so faces drift rather than blink. */
 @keyframes face-a {
-  0%   { transform: translate(-14px, -18px) rotate(-0.7deg) scale(1);    opacity: 0.65; }
-  28%  { transform: translate( 10px,  -4px) rotate( 0.5deg) scale(1.03); opacity: 1; }
-  52%  { transform: translate( 16px,  14px) rotate( 1deg)   scale(1.01); opacity: 0.8; }
-  76%  { transform: translate( -8px,  10px) rotate(-0.4deg) scale(1.04); opacity: 0.95; }
-  100% { transform: translate(-14px, -18px) rotate(-0.7deg) scale(1);    opacity: 0.65; }
+  0%   { transform: translate(calc(var(--lfo-depth) * -35.0vw), calc(var(--lfo-depth) * -39.6vh)) rotate(calc(var(--lfo-depth) * -21.0deg)) scale(1);    opacity: 0.65; }
+  28%  { transform: translate(calc(var(--lfo-depth) * 25.0vw), calc(var(--lfo-depth) * -8.8vh)) rotate(calc(var(--lfo-depth) * 15.0deg)) scale(1.03); opacity: 1; }
+  52%  { transform: translate(calc(var(--lfo-depth) * 40.0vw), calc(var(--lfo-depth) * 30.8vh)) rotate(calc(var(--lfo-depth) * 30.0deg))   scale(1.01); opacity: 0.8; }
+  76%  { transform: translate(calc(var(--lfo-depth) * -20.0vw), calc(var(--lfo-depth) * 22.0vh)) rotate(calc(var(--lfo-depth) * -12.0deg)) scale(1.04); opacity: 0.95; }
+  100% { transform: translate(calc(var(--lfo-depth) * -35.0vw), calc(var(--lfo-depth) * -39.6vh)) rotate(calc(var(--lfo-depth) * -21.0deg)) scale(1);    opacity: 0.65; }
 }
 @keyframes face-b {
-  0%   { transform: translate( 12px,  16px) rotate( 0.6deg) scale(1.02); opacity: 1; }
-  30%  { transform: translate( -6px,   2px) rotate(-0.5deg) scale(1);    opacity: 0.7; }
-  55%  { transform: translate(-16px, -20px) rotate(-1deg)   scale(1.03); opacity: 0.9; }
-  78%  { transform: translate(  4px,  -6px) rotate( 0.3deg) scale(1.01); opacity: 0.6; }
-  100% { transform: translate( 12px,  16px) rotate( 0.6deg) scale(1.02); opacity: 1; }
+  0%   { transform: translate(calc(var(--lfo-depth) * 30.0vw), calc(var(--lfo-depth) * 35.2vh)) rotate(calc(var(--lfo-depth) * 18.0deg)) scale(1.02); opacity: 1; }
+  30%  { transform: translate(calc(var(--lfo-depth) * -15.0vw), calc(var(--lfo-depth) * 4.4vh)) rotate(calc(var(--lfo-depth) * -15.0deg)) scale(1);    opacity: 0.7; }
+  55%  { transform: translate(calc(var(--lfo-depth) * -40.0vw), calc(var(--lfo-depth) * -44.0vh)) rotate(calc(var(--lfo-depth) * -30.0deg))   scale(1.03); opacity: 0.9; }
+  78%  { transform: translate(calc(var(--lfo-depth) * 10.0vw), calc(var(--lfo-depth) * -13.2vh)) rotate(calc(var(--lfo-depth) * 9.0deg)) scale(1.01); opacity: 0.6; }
+  100% { transform: translate(calc(var(--lfo-depth) * 30.0vw), calc(var(--lfo-depth) * 35.2vh)) rotate(calc(var(--lfo-depth) * 18.0deg)) scale(1.02); opacity: 1; }
 }
 @keyframes face-e {
-  0%   { transform: translate(-12px, -16px) rotate(-0.6deg) scale(1.01); opacity: 0.6; }
-  26%  { transform: translate(  6px,  -2px) rotate( 0.4deg) scale(1.03); opacity: 0.95; }
-  50%  { transform: translate( 18px,  20px) rotate( 0.9deg) scale(1);    opacity: 1; }
-  74%  { transform: translate(  0px,   8px) rotate(-0.2deg) scale(1.02); opacity: 0.75; }
-  100% { transform: translate(-12px, -16px) rotate(-0.6deg) scale(1.01); opacity: 0.6; }
+  0%   { transform: translate(calc(var(--lfo-depth) * -30.0vw), calc(var(--lfo-depth) * -35.2vh)) rotate(calc(var(--lfo-depth) * -18.0deg)) scale(1.01); opacity: 0.6; }
+  26%  { transform: translate(calc(var(--lfo-depth) * 15.0vw), calc(var(--lfo-depth) * -4.4vh)) rotate(calc(var(--lfo-depth) * 12.0deg)) scale(1.03); opacity: 0.95; }
+  50%  { transform: translate(calc(var(--lfo-depth) * 45.0vw), calc(var(--lfo-depth) * 44.0vh)) rotate(calc(var(--lfo-depth) * 27.0deg)) scale(1);    opacity: 1; }
+  74%  { transform: translate(calc(var(--lfo-depth) * 0.0vw), calc(var(--lfo-depth) * 17.6vh)) rotate(calc(var(--lfo-depth) * -6.0deg)) scale(1.02); opacity: 0.75; }
+  100% { transform: translate(calc(var(--lfo-depth) * -30.0vw), calc(var(--lfo-depth) * -35.2vh)) rotate(calc(var(--lfo-depth) * -18.0deg)) scale(1.01); opacity: 0.6; }
 }
 @keyframes face-c {
-  0%   { transform: translate(  8px, -22px) rotate( 0.7deg) scale(1);    opacity: 0.7; }
-  24%  { transform: translate(-10px,  -6px) rotate(-0.4deg) scale(1.03); opacity: 1; }
-  50%  { transform: translate(-18px,  14px) rotate(-0.9deg) scale(1.01); opacity: 0.85; }
-  76%  { transform: translate(  2px,   4px) rotate( 0.5deg) scale(1.04); opacity: 0.95; }
-  100% { transform: translate(  8px, -22px) rotate( 0.7deg) scale(1);    opacity: 0.7; }
+  0%   { transform: translate(calc(var(--lfo-depth) * 20.0vw), calc(var(--lfo-depth) * -48.4vh)) rotate(calc(var(--lfo-depth) * 21.0deg)) scale(1);    opacity: 0.7; }
+  24%  { transform: translate(calc(var(--lfo-depth) * -25.0vw), calc(var(--lfo-depth) * -13.2vh)) rotate(calc(var(--lfo-depth) * -12.0deg)) scale(1.03); opacity: 1; }
+  50%  { transform: translate(calc(var(--lfo-depth) * -45.0vw), calc(var(--lfo-depth) * 30.8vh)) rotate(calc(var(--lfo-depth) * -27.0deg)) scale(1.01); opacity: 0.85; }
+  76%  { transform: translate(calc(var(--lfo-depth) * 5.0vw), calc(var(--lfo-depth) * 8.8vh)) rotate(calc(var(--lfo-depth) * 15.0deg)) scale(1.04); opacity: 0.95; }
+  100% { transform: translate(calc(var(--lfo-depth) * 20.0vw), calc(var(--lfo-depth) * -48.4vh)) rotate(calc(var(--lfo-depth) * 21.0deg)) scale(1);    opacity: 0.7; }
 }
 @keyframes face-d {
-  0%   { transform: translate(-18px,  12px) rotate(-0.8deg) scale(1.02); opacity: 1; }
-  26%  { transform: translate( -2px,  -4px) rotate( 0.3deg) scale(1);    opacity: 0.7; }
-  54%  { transform: translate( 10px, -20px) rotate( 0.8deg) scale(1.03); opacity: 0.9; }
-  80%  { transform: translate( -6px,  -2px) rotate(-0.3deg) scale(1.01); opacity: 0.65; }
-  100% { transform: translate(-18px,  12px) rotate(-0.8deg) scale(1.02); opacity: 1; }
+  0%   { transform: translate(calc(var(--lfo-depth) * -45.0vw), calc(var(--lfo-depth) * 26.4vh)) rotate(calc(var(--lfo-depth) * -24.0deg)) scale(1.02); opacity: 1; }
+  26%  { transform: translate(calc(var(--lfo-depth) * -5.0vw), calc(var(--lfo-depth) * -8.8vh)) rotate(calc(var(--lfo-depth) * 9.0deg)) scale(1);    opacity: 0.7; }
+  54%  { transform: translate(calc(var(--lfo-depth) * 25.0vw), calc(var(--lfo-depth) * -44.0vh)) rotate(calc(var(--lfo-depth) * 24.0deg)) scale(1.03); opacity: 0.9; }
+  80%  { transform: translate(calc(var(--lfo-depth) * -15.0vw), calc(var(--lfo-depth) * -4.4vh)) rotate(calc(var(--lfo-depth) * -9.0deg)) scale(1.01); opacity: 0.65; }
+  100% { transform: translate(calc(var(--lfo-depth) * -45.0vw), calc(var(--lfo-depth) * 26.4vh)) rotate(calc(var(--lfo-depth) * -24.0deg)) scale(1.02); opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -485,6 +487,47 @@ a:hover { text-decoration: underline; }
   font-variant-numeric: tabular-nums;
 }
 .lfo__rate { color: var(--color-accent-faded); }
+.lfo__body {
+  display: flex;
+  gap: var(--space-3);
+  align-items: stretch;
+}
+.lfo__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+/* Vertical depth fader: a rotated native range — reliable everywhere,
+   unlike native vertical sliders (iOS WebKit in particular). */
+.lfo__depth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+.lfo__depth-slot {
+  position: relative;
+  width: 1.25rem;
+  flex: 1;
+}
+.lfo__depth-slot input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9.5rem;
+  margin: 0;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  accent-color: var(--color-accent);
+}
+.lfo__depth-label {
+  font-size: 0.65rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  color: var(--color-accent-faded);
+}
+
 .lfo__scope {
   display: block;
   width: 100%;
@@ -747,6 +790,8 @@ a:hover { text-decoration: underline; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 720px) {
+  :root { --lfo-depth: 0.07; }
+
   .site__top {
     padding: var(--space-1);
     min-height: calc(var(--bgh) * 2);
@@ -805,6 +850,7 @@ a:hover { text-decoration: underline; }
     gap: var(--space-2);
   }
   .lfo__scope { height: 3.5rem; }
+  .lfo__depth-slot input { width: 7rem; }
   .lfo__wave { padding: var(--space-1) 0; font-size: 0.7rem; }
   .lfo-glow { box-shadow: inset 0 0 55px 2px var(--color-accent); }
 
