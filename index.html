@@ -5,4 +5,28 @@ page_title: ""
 permalink: /
 ---
 
-<section class="home"></section>
+<section class="home">
+  <div class="lfo" data-lfo>
+    <div class="lfo__head">
+      <span class="lfo__title">LFO</span>
+      <span class="lfo__readout" data-lfo-readout>0.63 Hz</span>
+    </div>
+
+    <canvas class="lfo__scope" data-lfo-scope aria-hidden="true"></canvas>
+
+    <div class="lfo__waves" role="group" aria-label="Waveform">
+      <button class="lfo__wave is-active" type="button" data-lfo-wave="sine" aria-pressed="true">SIN</button>
+      <button class="lfo__wave" type="button" data-lfo-wave="triangle" aria-pressed="false">TRI</button>
+      <button class="lfo__wave" type="button" data-lfo-wave="square" aria-pressed="false">SQR</button>
+      <button class="lfo__wave" type="button" data-lfo-wave="sawtooth" aria-pressed="false">SAW</button>
+      <button class="lfo__wave" type="button" data-lfo-wave="random" aria-pressed="false">RND</button>
+    </div>
+
+    <label class="lfo__freq">
+      <span>FREQ</span>
+      <input type="range" min="0" max="1" step="0.001" value="0.5" data-lfo-freq aria-label="LFO frequency">
+    </label>
+  </div>
+</section>
+
+<script src="{{ '/assets/js/lfo.js' | relative_url }}" defer></script>
