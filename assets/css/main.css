@@ -284,39 +284,39 @@ a:hover { text-decoration: underline; }
    touch of rotation and scale around its own centre. Opacity stays in the
    0.55-1 band so faces drift rather than blink. */
 @keyframes face-a {
-  0%   { transform: translate(calc(var(--lfo-depth) * -35.0vw), calc(var(--lfo-depth) * -39.6vh)) rotate(calc(var(--lfo-depth) * -21.0deg)) scale(1);    opacity: 0.65; }
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1);    opacity: 0.65; }
   28%  { transform: translate(calc(var(--lfo-depth) * 25.0vw), calc(var(--lfo-depth) * -8.8vh)) rotate(calc(var(--lfo-depth) * 15.0deg)) scale(1.03); opacity: 1; }
   52%  { transform: translate(calc(var(--lfo-depth) * 40.0vw), calc(var(--lfo-depth) * 30.8vh)) rotate(calc(var(--lfo-depth) * 30.0deg))   scale(1.01); opacity: 0.8; }
   76%  { transform: translate(calc(var(--lfo-depth) * -20.0vw), calc(var(--lfo-depth) * 22.0vh)) rotate(calc(var(--lfo-depth) * -12.0deg)) scale(1.04); opacity: 0.95; }
-  100% { transform: translate(calc(var(--lfo-depth) * -35.0vw), calc(var(--lfo-depth) * -39.6vh)) rotate(calc(var(--lfo-depth) * -21.0deg)) scale(1);    opacity: 0.65; }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1);    opacity: 0.65; }
 }
 @keyframes face-b {
-  0%   { transform: translate(calc(var(--lfo-depth) * 30.0vw), calc(var(--lfo-depth) * 35.2vh)) rotate(calc(var(--lfo-depth) * 18.0deg)) scale(1.02); opacity: 1; }
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1.02); opacity: 1; }
   30%  { transform: translate(calc(var(--lfo-depth) * -15.0vw), calc(var(--lfo-depth) * 4.4vh)) rotate(calc(var(--lfo-depth) * -15.0deg)) scale(1);    opacity: 0.7; }
   55%  { transform: translate(calc(var(--lfo-depth) * -40.0vw), calc(var(--lfo-depth) * -44.0vh)) rotate(calc(var(--lfo-depth) * -30.0deg))   scale(1.03); opacity: 0.9; }
   78%  { transform: translate(calc(var(--lfo-depth) * 10.0vw), calc(var(--lfo-depth) * -13.2vh)) rotate(calc(var(--lfo-depth) * 9.0deg)) scale(1.01); opacity: 0.6; }
-  100% { transform: translate(calc(var(--lfo-depth) * 30.0vw), calc(var(--lfo-depth) * 35.2vh)) rotate(calc(var(--lfo-depth) * 18.0deg)) scale(1.02); opacity: 1; }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1.02); opacity: 1; }
 }
 @keyframes face-e {
-  0%   { transform: translate(calc(var(--lfo-depth) * -30.0vw), calc(var(--lfo-depth) * -35.2vh)) rotate(calc(var(--lfo-depth) * -18.0deg)) scale(1.01); opacity: 0.6; }
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1.01); opacity: 0.6; }
   26%  { transform: translate(calc(var(--lfo-depth) * 15.0vw), calc(var(--lfo-depth) * -4.4vh)) rotate(calc(var(--lfo-depth) * 12.0deg)) scale(1.03); opacity: 0.95; }
   50%  { transform: translate(calc(var(--lfo-depth) * 45.0vw), calc(var(--lfo-depth) * 44.0vh)) rotate(calc(var(--lfo-depth) * 27.0deg)) scale(1);    opacity: 1; }
   74%  { transform: translate(calc(var(--lfo-depth) * 0.0vw), calc(var(--lfo-depth) * 17.6vh)) rotate(calc(var(--lfo-depth) * -6.0deg)) scale(1.02); opacity: 0.75; }
-  100% { transform: translate(calc(var(--lfo-depth) * -30.0vw), calc(var(--lfo-depth) * -35.2vh)) rotate(calc(var(--lfo-depth) * -18.0deg)) scale(1.01); opacity: 0.6; }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1.01); opacity: 0.6; }
 }
 @keyframes face-c {
-  0%   { transform: translate(calc(var(--lfo-depth) * 20.0vw), calc(var(--lfo-depth) * -48.4vh)) rotate(calc(var(--lfo-depth) * 21.0deg)) scale(1);    opacity: 0.7; }
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1);    opacity: 0.7; }
   24%  { transform: translate(calc(var(--lfo-depth) * -25.0vw), calc(var(--lfo-depth) * -13.2vh)) rotate(calc(var(--lfo-depth) * -12.0deg)) scale(1.03); opacity: 1; }
   50%  { transform: translate(calc(var(--lfo-depth) * -45.0vw), calc(var(--lfo-depth) * 30.8vh)) rotate(calc(var(--lfo-depth) * -27.0deg)) scale(1.01); opacity: 0.85; }
   76%  { transform: translate(calc(var(--lfo-depth) * 5.0vw), calc(var(--lfo-depth) * 8.8vh)) rotate(calc(var(--lfo-depth) * 15.0deg)) scale(1.04); opacity: 0.95; }
-  100% { transform: translate(calc(var(--lfo-depth) * 20.0vw), calc(var(--lfo-depth) * -48.4vh)) rotate(calc(var(--lfo-depth) * 21.0deg)) scale(1);    opacity: 0.7; }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1);    opacity: 0.7; }
 }
 @keyframes face-d {
-  0%   { transform: translate(calc(var(--lfo-depth) * -45.0vw), calc(var(--lfo-depth) * 26.4vh)) rotate(calc(var(--lfo-depth) * -24.0deg)) scale(1.02); opacity: 1; }
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1.02); opacity: 1; }
   26%  { transform: translate(calc(var(--lfo-depth) * -5.0vw), calc(var(--lfo-depth) * -8.8vh)) rotate(calc(var(--lfo-depth) * 9.0deg)) scale(1);    opacity: 0.7; }
   54%  { transform: translate(calc(var(--lfo-depth) * 25.0vw), calc(var(--lfo-depth) * -44.0vh)) rotate(calc(var(--lfo-depth) * 24.0deg)) scale(1.03); opacity: 0.9; }
   80%  { transform: translate(calc(var(--lfo-depth) * -15.0vw), calc(var(--lfo-depth) * -4.4vh)) rotate(calc(var(--lfo-depth) * -9.0deg)) scale(1.01); opacity: 0.65; }
-  100% { transform: translate(calc(var(--lfo-depth) * -45.0vw), calc(var(--lfo-depth) * 26.4vh)) rotate(calc(var(--lfo-depth) * -24.0deg)) scale(1.02); opacity: 1; }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1.02); opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -81,10 +81,11 @@
     if (cycle !== heldCycle) { heldCycle = cycle; held = Math.random(); }
     var v = sample(phase - cycle);
 
-    // the output sets each face's position along its motion path —
-    // the wave's shape is the movement, its frequency is the speed
+    // the output sets how far each face is along its path: 0 = home in
+    // its hole, 1 = the far pose (half the loop — the paths close back
+    // on themselves, so mapping the full loop made 0 and 1 identical)
     if (!targets.length) collectTargets();
-    targets.forEach(function (t) { t.anim.currentTime = v * t.dur; });
+    targets.forEach(function (t) { t.anim.currentTime = v * t.dur * 0.5; });
     rateOut.textContent = Math.round(v * 100) + '%';
 
     // the faces throb with the wave: their brightness rides the output
