@@ -85,6 +85,35 @@ a:hover { text-decoration: underline; }
 .site__bg::before { background-image: url("../images/bg-left.jpg"); }
 .site__bg::after  { background-image: url("../images/bg-right.jpg"); }
 
+/* ---------- Inner-page background: dimmed + drifting ---------- */
+/* Home (.is-home) keeps the original bright, static backgrounds. */
+.site:not(.is-home) .site__bg::before,
+.site:not(.is-home) .site__bg::after {
+  filter: brightness(0.45);          /* lower = darker */
+  will-change: transform;
+}
+.site:not(.is-home) .site__bg::before {
+  animation: drift-left 12s ease-in-out infinite alternate;
+}
+.site:not(.is-home) .site__bg::after {
+  animation: drift-right 12s ease-in-out infinite alternate;
+}
+
+/* scale() keeps the edges covered while the image moves */
+@keyframes drift-left {
+  from { transform: scale(1.15) translate(-4%, -3%); }
+  to   { transform: scale(1.15) translate( 4%,  3%); }
+}
+@keyframes drift-right {
+  from { transform: scale(1.15) translate( 4%,  3%); }
+  to   { transform: scale(1.15) translate(-4%, -3%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site:not(.is-home) .site__bg::before,
+  .site:not(.is-home) .site__bg::after { animation: none; }
+}
+
 /* ---------- Header ---------- */
 .site__header {
   position: relative;

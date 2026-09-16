@@ -20,7 +20,7 @@
     {% seo %}
   </head>
 
-  <body class="site">
+  <body class="site{% if page.url == '/' %} is-home{% endif %}">
     <div class="site__top">
       <div class="site__bg" aria-hidden="true"></div>
 
