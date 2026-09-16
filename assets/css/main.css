@@ -252,13 +252,15 @@ a:hover { text-decoration: underline; }
   transform-origin: 81% 39%;
 }
 
-/* Animations only run on inner pages — the keyframes drive opacity, so
-   assigning them on the home page would override its opacity: 0. */
-.site:not(.is-home) .site__bg-fx--l1 { animation: face-a 11.3s ease-in-out -2.8s infinite; }
-.site:not(.is-home) .site__bg-fx--l2 { animation: face-b 13.1s ease-in-out -5.2s infinite; }
-.site:not(.is-home) .site__bg-fx--l3 { animation: face-e  9.7s ease-in-out -1.9s infinite; }
-.site:not(.is-home) .site__bg-fx--r1 { animation: face-c 12.7s ease-in-out -7.4s infinite; }
-.site:not(.is-home) .site__bg-fx--r2 { animation: face-d 14.9s ease-in-out -4.1s infinite; }
+/* The faces run everywhere — on home they drift as ghost double-exposures
+   over the bright originals (no plate or holes there). The keyframes drive
+   opacity, which is what overrides the base opacity: 0 on home; under
+   reduced motion the animations stop and that base value hides them again. */
+.site__bg-fx--l1 { animation: face-a 11.3s ease-in-out -2.8s infinite; }
+.site__bg-fx--l2 { animation: face-b 13.1s ease-in-out -5.2s infinite; }
+.site__bg-fx--l3 { animation: face-e  9.7s ease-in-out -1.9s infinite; }
+.site__bg-fx--r1 { animation: face-c 12.7s ease-in-out -7.4s infinite; }
+.site__bg-fx--r2 { animation: face-d 14.9s ease-in-out -4.1s infinite; }
 
 /* Each face wanders a closed loop (first and last frames match), with a
    touch of rotation and scale around its own centre. Opacity stays in the
