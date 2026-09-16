@@ -367,6 +367,25 @@ a:hover { text-decoration: underline; }
   min-height: 60vh;
 }
 
+/* ---------- Scroll reveal ---------- */
+/* Only applied once reveal.js has run, so no-JS keeps everything visible. */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ---------- About page ---------- */
 .about {
   display: grid;
@@ -377,7 +396,7 @@ a:hover { text-decoration: underline; }
 
 .about__image { grid-column: 1; grid-row: 1; }
 /* Sized only when a promo image has been set in _data/about.yml */
-.about__image[style] {
+.about__image--set {
   aspect-ratio: 1;
   background-size: cover;
   background-position: center;

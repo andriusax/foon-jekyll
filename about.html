@@ -8,13 +8,13 @@ permalink: /about/
 {% assign about = site.data.about %}
 
 <section class="about">
-  <div class="about__image"{% if about.image and about.image != "" %} style="background-image: url('{{ about.image | relative_url }}')"{% endif %} role="img" aria-label="Foon promo image"></div>
+  <div class="about__image{% if about.image and about.image != "" %} about__image--set{% endif %}" data-reveal{% if about.image and about.image != "" %} style="background-image: url('{{ about.image | relative_url }}')"{% endif %} role="img" aria-label="Foon promo image"></div>
 
-  <div class="about__text">
+  <div class="about__text" data-reveal-group>
     {{ about.intro | markdownify }}
   </div>
 
-  <div class="about__bios">
+  <div class="about__bios" data-reveal-group>
     {% for b in about.bios %}
       <p>{{ b.name }} – {{ b.role }}. {{ b.bio }}</p>
     {% endfor %}
