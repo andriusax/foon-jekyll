@@ -13,7 +13,7 @@
   var ctx = scope.getContext('2d');
 
   var FREQ_MIN = 0.05, FREQ_MAX = 8;   // Hz, slider maps log between these
-  var RATE_MIN = 0.1,  RATE_MAX = 6;   // animation playbackRate range
+  var RATE_MIN = 0,    RATE_MAX = 7;   // playbackRate: full freeze to a whip
 
   var wave = 'sine';
   var freq = toFreq(+freqInput.value);
@@ -25,6 +25,8 @@
   var accentFaded = 'rgba(237, 52, 36, 0.35)';
   var last = performance.now();
   var targets = [];
+  var bg = document.querySelector('.site__bg');
+  var rateOut = root.querySelector('[data-lfo-rate]');
 
   function toFreq(v) { return FREQ_MIN * Math.pow(FREQ_MAX / FREQ_MIN, v); }
 
@@ -102,6 +104,16 @@
     if (!targets.length) collectTargets();
     var rate = RATE_MIN + v * (RATE_MAX - RATE_MIN);
     targets.forEach(function (a) { a.playbackRate = rate; });
+    rateOut.textContent = '\u00d7' + rate.toFixed(1);
+
+    // and physically move the backdrop with the wave: a bob and a
+    // breathing zoom that trace the LFO output one-for-one. Base scale
+    // 1.02 keeps the edges covered while it travels.
+    if (bg) {
+      bg.style.transform =
+        'translateY(' + ((0.5 - v) * 14).toFixed(1) + 'px)' +
+        ' scale(' + (1.02 + v * 0.03).toFixed(3) + ')';
+    }
 
     trace.push(v);
     if (trace.length > scope.clientWidth) trace.splice(0, trace.length - scope.clientWidth);
