@@ -469,6 +469,33 @@ a:hover { text-decoration: underline; }
   padding-bottom: var(--space-5);
 }
 
+/* On desktop the home page fits the first screen exactly — header,
+   panel, and the whole footer visible with no scroll. (Small screens
+   keep scrolling: the two photos stack there by design.) */
+@media (min-width: 721px) {
+  .is-home {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .is-home .site__top {
+    flex: 1;
+    min-height: 0;
+  }
+  .is-home .site__main {
+    padding: var(--space-4) 0 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .is-home .home {
+    flex: 1;
+    min-height: 0;
+    padding-bottom: var(--space-4);
+  }
+  .is-home .site__footer { flex-shrink: 0; }
+}
+
 /* The LFO's output breathes a glow around the screen edges. */
 .lfo-glow {
   position: fixed;
