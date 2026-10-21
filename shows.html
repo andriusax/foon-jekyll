@@ -9,12 +9,12 @@ permalink: /shows/
 {% assign sorted = site.data.shows.shows | sort: "date" %}
 
 <section class="shows">
-  <div class="shows__section">
+  <div class="shows__section" id="shows-upcoming">
     <h2 class="shows__heading">Upcoming</h2>
     {% for s in sorted %}
       {% assign s_date = s.date | date: "%Y-%m-%d" %}
       {% if s_date >= today %}
-        <article class="show">
+        <article class="show" data-date="{{ s_date }}">
           <div class="show__date">
             <span class="show__day">{{ s.date | date: "%d" }}</span>
             <span class="show__month">{{ s.date | date: "%b" }}</span>
@@ -27,12 +27,12 @@ permalink: /shows/
     {% endfor %}
   </div>
 
-  <div class="shows__section">
+  <div class="shows__section" id="shows-past">
     <h2 class="shows__heading shows__heading--past">Past</h2>
     {% for s in sorted reversed %}
       {% assign s_date = s.date | date: "%Y-%m-%d" %}
       {% if s_date < today %}
-        <article class="show show--past">
+        <article class="show show--past" data-date="{{ s_date }}">
           <div class="show__date">
             <span class="show__day">{{ s.date | date: "%d" }}</span>
             <span class="show__month">{{ s.date | date: "%b" }}</span>
@@ -45,3 +45,5 @@ permalink: /shows/
     {% endfor %}
   </div>
 </section>
+
+<script src="{{ '/assets/js/shows.js' | relative_url }}" defer></script>
