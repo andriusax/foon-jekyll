@@ -1,0 +1,374 @@
+---
+layout: null
+permalink: /epk/
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FOON — Electronic Press Kit</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Foon — electro-acoustic duo. Debut EP Everything Is, out 2026 on Relativistic Records.">
+
+    <link rel="icon" href="{{ '/icon.png' | relative_url }}" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jura:wght@400;500;700&display=swap">
+
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --text: #f4f4f4;
+        --muted: #8a8a8a;
+        --dim: #5c5c5c;
+        --accent: #ed3424;
+        --line: #262626;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+      }
+
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 24px 80px;
+      }
+
+      .label {
+        font-family: "Courier New", Courier, monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 12px;
+        color: var(--dim);
+      }
+
+      h1, h2 {
+        font-family: "Jura", Arial, sans-serif;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: 0.02em;
+      }
+
+      header.hero {
+        padding: 48px 0 0;
+      }
+
+      .hero__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 24px;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      .hero__brand {
+        font-family: "Jura", Arial, sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .hero__image {
+        margin-top: 32px;
+        width: 100%;
+        aspect-ratio: 2 / 3;
+        max-height: 70vh;
+        overflow: hidden;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .hero__caption {
+        padding: 48px 24px 0;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      .hero__caption h1 {
+        font-size: 40px;
+      }
+
+      .hero__caption p {
+        color: var(--muted);
+        max-width: 48ch;
+        margin: 12px 0 0;
+      }
+
+      section {
+        padding: 56px 0 0;
+        border-top: 1px solid var(--line);
+        margin-top: 56px;
+      }
+
+      section:first-of-type {
+        border-top: none;
+        margin-top: 0;
+      }
+
+      section > .label {
+        display: block;
+        margin-bottom: 20px;
+      }
+
+      .bio p {
+        margin: 0 0 16px;
+        color: var(--text);
+      }
+
+      .lineup {
+        display: grid;
+        gap: 24px;
+      }
+
+      .lineup__item h2 {
+        font-size: 18px;
+      }
+
+      .lineup__role {
+        display: block;
+        font-family: "Courier New", Courier, monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 11px;
+        color: var(--accent);
+        margin: 4px 0 10px;
+      }
+
+      .lineup__item p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .btn {
+        display: inline-block;
+        font-family: "Courier New", Courier, monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 12px;
+        color: var(--text);
+        text-decoration: none;
+        border: 1px solid var(--line);
+        padding: 14px 22px;
+        transition: border-color 0.15s ease, color 0.15s ease;
+      }
+
+      .btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .btn--accent {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .btn--accent:hover {
+        background: var(--accent);
+        color: var(--bg);
+      }
+
+      .watch {
+        position: relative;
+        display: block;
+        max-width: 420px;
+        text-decoration: none;
+      }
+
+      .watch img {
+        width: 100%;
+        display: block;
+        border: 1px solid var(--line);
+      }
+
+      .watch__play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .watch__play::after {
+        content: "";
+        border-style: solid;
+        border-width: 9px 0 9px 15px;
+        border-color: transparent transparent transparent var(--bg);
+        margin-left: 3px;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .gallery img {
+        width: 100%;
+        display: block;
+        border: 1px solid var(--line);
+      }
+
+      .gallery figure {
+        margin: 0;
+      }
+
+      .gallery figcaption {
+        font-family: "Courier New", Courier, monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 10px;
+        color: var(--dim);
+        margin-top: 8px;
+      }
+
+      .credit {
+        color: var(--muted);
+      }
+
+      .credit strong {
+        color: var(--text);
+        font-weight: 400;
+      }
+
+      footer {
+        padding: 56px 0 0;
+        margin-top: 56px;
+        border-top: 1px solid var(--line);
+      }
+
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      footer p {
+        color: var(--dim);
+        font-size: 13px;
+      }
+
+      @media (max-width: 480px) {
+        .hero__caption h1 { font-size: 32px; }
+        .gallery { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__top">
+        <span class="hero__brand">FOON</span>
+        <span class="label">Press Kit</span>
+      </div>
+
+      <div class="hero__image">
+        <img src="{{ '/epk/assets/hero.jpg' | relative_url }}" alt="Foon promo photo" width="666" height="1000">
+      </div>
+
+      <div class="hero__caption">
+        <h1>Foon</h1>
+        <p>Electro-acoustic duo. Debut EP <em>Everything Is</em>, 2026, on Relativistic Records.</p>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <section class="bio">
+        <span class="label">Bio</span>
+        {{ site.data.about.intro | markdownify }}
+      </section>
+
+      <section class="lineup">
+        <span class="label">Line-up</span>
+        {% for b in site.data.about.bios %}
+          <div class="lineup__item">
+            <h2>{{ b.name }}</h2>
+            <span class="lineup__role">{{ b.role }}</span>
+            <p>{{ b.bio }}</p>
+          </div>
+        {% endfor %}
+      </section>
+
+      <section class="listen">
+        <span class="label">Listen</span>
+        <div class="actions">
+          {% assign release = site.data.releases.releases.first %}
+          {% if release.listen_url and release.listen_url != "" %}
+            <a class="btn btn--accent" href="{{ release.listen_url }}" target="_blank" rel="noopener">Listen — {{ release.title }} ({{ release.year }})</a>
+          {% endif %}
+        </div>
+      </section>
+
+      <section class="watch">
+        <span class="label">Watch</span>
+        {% assign video = site.data.videos.videos.first %}
+        <a class="watch" href="https://www.youtube.com/watch?v={{ video.id }}{% if video.start %}&t={{ video.start }}s{% endif %}" target="_blank" rel="noopener">
+          <img src="{{ '/epk/assets/video-thumb.jpg' | relative_url }}" alt="Foon live session video thumbnail" width="480" height="360">
+          <span class="watch__play" aria-hidden="true"></span>
+        </a>
+      </section>
+
+      <section class="photos">
+        <span class="label">Photos</span>
+        <div class="gallery">
+          <figure>
+            <img src="{{ '/epk/assets/photo1.jpg' | relative_url }}" alt="Foon live photo 1" width="333" height="500" loading="lazy">
+            <figcaption>© Aura Skulskyte</figcaption>
+          </figure>
+          <figure>
+            <img src="{{ '/epk/assets/photo2.jpg' | relative_url }}" alt="Foon live photo 2" width="333" height="500" loading="lazy">
+            <figcaption>© Aura Skulskyte</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="label-credit">
+        <span class="label">Label</span>
+        <p class="credit"><strong>Everything Is</strong> is released on Relativistic Records, 2026.</p>
+      </section>
+
+      <footer>
+        <span class="label">Contact</span>
+        <p><a href="mailto:foon.sound@gmail.com">foon.sound@gmail.com</a></p>
+        <p>
+          <a href="https://www.instagram.com/foon_music/" target="_blank" rel="noopener">Instagram</a> ·
+          <a href="https://www.youtube.com/@Foonsound" target="_blank" rel="noopener">YouTube</a> ·
+          <a href="https://linktr.ee/foon.sound" target="_blank" rel="noopener">Linktree</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
